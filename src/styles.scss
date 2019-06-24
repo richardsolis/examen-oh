@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-tab-label {
+    width: 100%;
+}
+mat-tab-body {
+    height: calc(100vh - 48px);
+    min-height: 650px;
+    .mat-tab-body-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+table {
+    width: 100%;
+    thead {
+        background: #3f51b5 !important;
+        th {
+            color: white !important;
+        }
+    }
+}

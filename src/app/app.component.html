@@ -1,0 +1,76 @@
+<div>
+    <mat-tab-group>
+        <mat-tab label="Creación de Clienetes"> 
+            <mat-card class="card-create-user">
+              <h3>Crear Cliente :</h3>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Nombre" value="" [(ngModel)]="client.name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Apellidos" value="" [(ngModel)]="client.lastname">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" (click)="picker.open()">
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" [max]="maxDate" [(ngModel)]="client.birthdate" >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+                <button mat-flat-button color="primary" (click)="createUser()">Crear</button>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Lista de Clientes"> 
+
+            <div class="container-table">
+              <h3>
+                Lista de Clientes
+              </h3>
+              <div class="row-filter-leyend">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+                </mat-form-field>
+                <div class="box-leyend">
+                    <p>Edad Promedio: <span>{{agePromedi}}</span></p>
+                    <p>Edad Promedio de Muerte: <span>74</span></p>
+                  </div>
+              </div>
+              <div class="example-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" >
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="lastname">
+                      <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                      <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="birthdate">
+                      <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+                      <td mat-cell *matCellDef="let element"> {{element.birthdate}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="age">
+                      <th mat-header-cell *matHeaderCellDef> Edad </th>
+                      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dead">
+                        <th mat-header-cell *matHeaderCellDef> Fecha Probable de Muerte </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dead}} </td>
+                      </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </div>
+            </div>
+
+
+        </mat-tab>
+      </mat-tab-group>
+  <!-- <button (click)="createUser()">
+    Enviar
+  </button>
+  <button mat-button>Click me!</button> -->
+</div>
+
